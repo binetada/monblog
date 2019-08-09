@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<routes>
+  <route url="/monblog/Web/bootstrap.php/news-([0-9]+)\.html" module="News" action="show" vars="id"></route>
+  <route url="/monblog/Web/bootstrap.php" module="News" action="index" ></route>
+  <route url="/monblog/Web/bootstrap.php/commenter-([0-9]+)\.html" module="News" action="insertComment" vars="news" ></route>
+</routes>

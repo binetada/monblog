@@ -1,0 +1,13 @@
+{
+    "name": "bineta/bblo",
+    "authors": [
+        {
+            "name": "Bineta",
+            "email": "bineta.mentorat@gmail.com"
+        }
+    ],
+    "require": {}
+    "autoload": {
+    "psr-4" : {"App\\" : "App"}
+}
+}

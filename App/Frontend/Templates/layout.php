@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      <?= isset($title) ? $title : 'Mon super site' ?>
+    </title>
+    
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/Envision.css" type="text/css" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </head>
+  
+  <body>
+    <div id="wrap">
+      <header>
+        <h1><a href="/">Mon super site</a></h1>
+        <p>Comment ça, il n'y a presque rien ?</p>
+      </header>
+      
+      <nav>
+        <ul>
+          <li><a href="/monblog/Web/bootstrap.php">Accueil</a></li>
+          <?php if ($user->isAuthenticated()) { ?>
+          <li><a href="/monblog/Web/admin.php">Admin</a></li>
+          <li><a href="/admin/news-insert.html">Ajouter une news</a></li>
+          <?php } ?>
+        </ul>
+      </nav>
+      
+      <div id="content-wrap">
+        <section id="main">
+          <?php if ($user->hasFlash()) echo '<p style="text-align: center;">', $user->getFlash(), '</p>'; ?>
+          
+          <?= $content ?>
+        </section>
+      </div>
+    
+      <footer></footer>
+    </div>
+  </body>
+</html>

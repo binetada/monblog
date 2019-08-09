@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<routes>
+    <route url="/monblog/Web/admin.php" module="News" action="index" ></route>
+    <route url="/monblog/Web/admin.php/news-insert\.html" module="News" action="insert" ></route>
+    <route url="/monblog/Web/admin.php/news-update-([0-9]+)\.html" module="News" action="update" vars="id" ></route>
+
+</routes>
+
+
+
