@@ -70,4 +70,13 @@ class NewsController extends BackController
     $this->page->addVar('news', $news);
   }
   
+   public function executeDelete(HTTPRequest $request)
+  {
+    $this->managers->getManagerOf('News')->delete($request->getData('id'));
+    
+    $this->app->user()->setFlash('La news a bien été supprimée !');
+    
+    $this->app->httpResponse()->redirect('http://localhost/monblog/Web/admin.php');
+  }
+  
 }
