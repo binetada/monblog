@@ -47,4 +47,6 @@ abstract class NewsManager extends Manager
    * @return void
    */
   abstract public function delete($id);
+   
+  
 }
