@@ -19,12 +19,16 @@ if (empty($comments))
 foreach ($comments as $comment)
 {
 ?>
-  <fieldset>
-    <legend>
-      Posté par <strong><?= htmlspecialchars($comment['auteur']) ?></strong> le <?= $comment['date']->format('d/m/Y à H\hi') ?>
-    </legend>
-    <p><?= nl2br(htmlspecialchars($comment['contenu'])) ?></p>
-  </fieldset>
+<fieldset>
+  <legend>
+    Posté par <strong><?= htmlspecialchars($comment['auteur']) ?></strong> le <?= $comment['date']->format('d/m/Y à H\hi') ?>
+    <?php if ($user->isAuthenticated()) { ?> -
+      <a href="http://localhost/monblog/Web/admin.php/comments-update-<?= $comment['id'] ?>.html">Modifier</a> |
+      <a href="http://localhost/monblog/Web/admin.php/comments-delete-<?= $comment['id'] ?>.html">Supprimer</a>
+    <?php } ?>
+  </legend>
+  <p><?= nl2br(htmlspecialchars($comment['contenu'])) ?></p>
+</fieldset>
 <?php
 }
 ?>

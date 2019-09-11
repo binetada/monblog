@@ -24,7 +24,7 @@
           <li><a href="/monblog/Web/bootstrap.php">Accueil</a></li>
           <?php if ($user->isAuthenticated()) { ?>
           <li><a href="/monblog/Web/admin.php">Admin</a></li>
-          <li><a href="/admin/news-insert.html">Ajouter une news</a></li>
+          <li><a href="/monblog/Web/admin.php/news-insert.html">Ajouter une news</a></li>
           <?php } ?>
         </ul>
       </nav>
