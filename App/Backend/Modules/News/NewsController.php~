@@ -28,6 +28,20 @@ class NewsController extends BackController
     $this->page->addVar('title', 'Ajout d\'une news');
   }
   
+   public function executeUpdate(HTTPRequest $request)
+  {
+    if ($request->postExists('auteur'))
+    {
+      $this->processForm($request);
+    }
+    else
+    {
+      $this->page->addVar('news', $this->managers->getManagerOf('News')->getUnique($request->getData('id')));
+    }
+    
+    $this->page->addVar('title', 'Modification d\'une news');
+  }
+  
    public function processForm(HTTPRequest $request)
   {
     $news = new News([
@@ -54,6 +68,15 @@ class NewsController extends BackController
     }
     
     $this->page->addVar('news', $news);
+  }
+  
+   public function executeDelete(HTTPRequest $request)
+  {
+    $this->managers->getManagerOf('News')->delete($request->getData('id'));
+    
+    $this->app->user()->setFlash('La news a bien été supprimée !');
+    
+    $this->app->httpResponse()->redirect('.');
   }
   
 }
