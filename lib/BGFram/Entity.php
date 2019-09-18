@@ -3,6 +3,10 @@ namespace BGFram;
 
 abstract class Entity implements \ArrayAccess
 {
+
+// Utilisation du trait Hydrator pour que nos entités puissent être hydratées
+  use Hydrator;
+  
   protected $erreurs = [],
             $id;
 
@@ -34,18 +38,7 @@ abstract class Entity implements \ArrayAccess
     $this->id = (int) $id;
   }
 
-  public function hydrate(array $donnees)
-  {
-    foreach ($donnees as $attribut => $valeur)
-    {
-      $methode = 'set'.ucfirst($attribut);
-
-      if (is_callable([$this, $methode]))
-      {
-        $this->$methode($valeur);
-      }
-    }
-  }
+  
 
   public function offsetGet($var)
   {
