@@ -5,6 +5,9 @@ use \BGFram\BackController;
 use \BGFram\HTTPRequest;
 use \Entity\Comment;
 use \Entity\News;
+use \BGFram\Form;
+use \BGFram\StringField;
+use \BGFram\TextField;
 
 
 class NewsController extends BackController
@@ -94,7 +97,7 @@ class NewsController extends BackController
     $this->page->addVar('comment', $comment);
     $this->page->addVar('form', $form->createView()); // On passe le formulaire généré à la vue.
     $this->page->addVar('title', 'Ajout d\'un commentaire');
-    }
+    
   }
   
    public function executeUpdateComment(HTTPRequest $request)
