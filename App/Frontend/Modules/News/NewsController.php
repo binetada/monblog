@@ -5,6 +5,9 @@ use \BGFram\BackController;
 use \BGFram\HTTPRequest;
 use \Entity\Comment;
 use \Entity\News;
+use \BGFram\Form;
+use \BGFram\StringField;
+use \BGFram\TextField;
 
 
 class NewsController extends BackController
@@ -59,29 +62,42 @@ class NewsController extends BackController
   {
     $this->page->addVar('title', 'Ajout d\'un commentaire');
     
-    if ($request->postExists('pseudo'))
+    if ($request->method() == 'POST')
     {
       $comment = new Comment([
         'news' => $request->getData('news'),
-        'auteur' => $request->postData('pseudo'),
+        'auteur' => $request->postData('auteur'),
         'contenu' => $request->postData('contenu')
       ]);
-      
-      if ($comment->isValid())
-      {
-        $this->managers->getManagerOf('Comments')->save($comment);
-        
-        $this->app->user()->setFlash('Le commentaire a bien été ajouté, merci !');
-        
-        $this->app->httpResponse()->redirect('news-'.$request->getData('news').'.html');
-      }
-      else
-      {
-        $this->page->addVar('erreurs', $comment->erreurs());
-      }
-      
-      $this->page->addVar('comment', $comment);
     }
+    else
+    {
+      $comment = new Comment;
+    }
+    
+    $form = new Form($comment);
+    
+    $form->add(new StringField([
+        'label' => 'Auteur',
+        'name' => 'auteur',
+        'maxLength' => 50,
+       ]))
+       ->add(new TextField([
+        'label' => 'Contenu',
+        'name' => 'contenu',
+        'rows' => 7,
+        'cols' => 50,
+       ]));
+    
+    if ($form->isValid())
+    {
+      // On enregistre le commentaire
+    }
+    
+    $this->page->addVar('comment', $comment);
+    $this->page->addVar('form', $form->createView()); // On passe le formulaire généré à la vue.
+    $this->page->addVar('title', 'Ajout d\'un commentaire');
+    
   }
   
    public function executeUpdateComment(HTTPRequest $request)
